@@ -214,7 +214,7 @@ var FastSearch = function () {
 
   self = {
     // -- Public Constants -----------------------------------------------------
-    
+
     /**
      * Yahoo! BOSS API URL with placeholder values for the app id, search query,
      * and callback method.
@@ -254,11 +254,13 @@ var FastSearch = function () {
       inputEl  = get(myInputEl);
       resultEl = get(myResultEl);
 
+      // Turn autocomplete off so arrow key navigation will work.
+      inputEl.setAttribute('autocomplete', 'off');
+
       getUserAgent();
 
       on(inputEl, 'keyup', function () { self.search(inputEl.value); });
       on(inputEl, 'focus', function () { selIndex = -1; });
-
       on(d, ua.gecko ? 'keypress' : 'keydown', handleKeyNav);
 
       inputEl.focus();
