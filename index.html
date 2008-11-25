@@ -1,0 +1,64 @@
+<!DOCTYPE html public "-//W3C/DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Fast Search Using Yahoo! BOSS</title>
+    <style type="text/css">
+      body {
+        background: #fff;
+        color: #000;
+        font: 10pt Arial, sans-serif;
+      }
+
+      #q {
+        width: 30em;
+      }
+
+      #web {
+        list-style: none;
+        margin: 1em 0;
+        padding: 0;
+      }
+
+      #web li {
+        margin-bottom: 1em;
+      }
+
+      #web li.default {
+        color: #666;
+        font-style: italic;
+      }
+
+      #web li cite {
+        color: #006600;
+        font-style: normal;
+      }
+
+      #web li h3 {
+        font-size: 12pt;
+        font-weight: normal;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fast Search Using Yahoo! BOSS</h1>
+
+    <form action="http://search.yahoo.com/search" method="get">
+      <div>
+        <input type="text" id="q" name="q" maxlength="255"
+            autocomplete="off" title="Type a query">
+      </div>
+    </form>
+
+    <div id="results">
+      <h2>Results</h2>
+      <ol id="web">
+        <li class="default">Type a search query above.</li>
+      </ol>
+    </div>
+
+    <script src="js/fastsearch.js"></script>
+    <script>FastSearch.init('pNi6xQDV34FbvnO3QRfWKSByhmPFG.3fVS_R2KzOhMek3szHWKNBrTsdi1mob2vZgKjLoLuZ4A--', 'q', 'web');</script>
+  </body>
+</html>
