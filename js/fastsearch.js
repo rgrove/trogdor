@@ -45,7 +45,9 @@ var FastSearch = function () {
    */
   function getUserAgent() {
     // No need to run again if ua is already populated.
-    if (ua) { return; }
+    if (ua) {
+      return;
+    }
 
     var nua = navigator.userAgent, m;
 
@@ -137,7 +139,7 @@ var FastSearch = function () {
       result = results[i];
 
       el.innerHTML = '<h3><a href="' + result.clickurl + '">' + result.title + '</a></h3>' +
-          '<div class="abstract">' + result.abstract + '</div>' +
+          '<div class="abstract">' + result['abstract'] + '</div>' +
           '<cite>' + result.dispurl + '</cite>';
 
       resultEl.appendChild(el);
@@ -190,7 +192,7 @@ var FastSearch = function () {
 
         try {
           resultEl.childNodes[selIndex].firstChild.firstChild.focus();
-        } catch (e) {
+        } catch (ex) {
           selIndex += 1;
         }
       }
@@ -204,7 +206,7 @@ var FastSearch = function () {
 
         try {
           resultEl.childNodes[selIndex].firstChild.firstChild.focus();
-        } catch (e) {
+        } catch (ex) {
           selIndex -= 1;
         }
       }
@@ -259,8 +261,14 @@ var FastSearch = function () {
 
       getUserAgent();
 
-      on(inputEl, 'keyup', function () { self.search(inputEl.value); });
-      on(inputEl, 'focus', function () { selIndex = -1; });
+      on(inputEl, 'keyup', function () {
+        self.search(inputEl.value);
+      });
+
+      on(inputEl, 'focus', function () {
+        selIndex = -1;
+      });
+
       on(d, ua.gecko ? 'keypress' : 'keydown', handleKeyNav);
 
       inputEl.focus();
@@ -299,7 +307,7 @@ var FastSearch = function () {
       // object and cache it to speed up future requests for the same query.
       self.results[query] = function (data) {
         if (data) {
-          arguments.callee.data = data
+          arguments.callee.data = data;
         }
 
         refresh(query, arguments.callee.data);
