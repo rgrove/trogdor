@@ -10,9 +10,10 @@
         font: 10pt Arial, sans-serif;
       }
 
-      #q {
-        width: 30em;
-      }
+      h1 { font-size: 16pt; }
+      h2 { font-size: 14pt; }
+
+      #q { width: 30em; }
 
       #web {
         list-style: none;
@@ -20,9 +21,7 @@
         padding: 0;
       }
 
-      #web li {
-        margin-bottom: 1em;
-      }
+      #web li { margin-bottom: 1em; }
 
       #web li.default {
         color: #666;
@@ -39,26 +38,44 @@
         font-weight: normal;
         margin: 0;
       }
+
+      #web li h3 a b { font-weight: bold; }
     </style>
   </head>
   <body>
-    <h1>Fast Search Using Yahoo! BOSS</h1>
+    <div id="hd">
+      <h1>Fast Search Using Yahoo! BOSS</h1>
 
-    <form action="http://search.yahoo.com/search" method="get">
-      <div>
-        <input type="text" id="q" name="q" maxlength="255"
-            autocomplete="off" title="Type a query">
-      </div>
-    </form>
+      <form action="http://search.yahoo.com/search" method="get">
+        <div>
+          <input type="text" id="q" name="q" maxlength="255"
+              autocomplete="off" title="Type a query">
 
-    <div id="results">
+          <noscript>
+            <p>
+            Instant search results are unavailable because JavaScript is
+            disabled.
+            </p>
+          </noscript>
+        </div>
+      </form>
+    </div>
+
+    <div id="bd">
       <h2>Results</h2>
       <ol id="web">
-        <li class="default">Type a search query above.</li>
+        <li class="default">
+          Type a search query above, then use the up and down arrow keys to
+          select a result.
+        </li>
       </ol>
     </div>
 
+    <div id="ft">
+      
+    </div>
+
     <script src="js/fastsearch.js"></script>
-    <script>FastSearch.init('pNi6xQDV34FbvnO3QRfWKSByhmPFG.3fVS_R2KzOhMek3szHWKNBrTsdi1mob2vZgKjLoLuZ4A--', 'q', 'web');</script>
+    <script>FastSearch.init('C82ywM3V34FSPr8EUqeE61WL6zQ1psBVArWY62MoVxyuljPRIfkcdnWSKDTKBuTkFsyMAkvp9Q--', 'q', 'web');</script>
   </body>
 </html>
