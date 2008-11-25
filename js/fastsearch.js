@@ -289,7 +289,7 @@ var FastSearch = function () {
 
       el.src = substitute(self.BOSS_URL, {
         appid   : encodeURIComponent(appId),
-        callback: encodeURIComponent("FastSearch.results['" + query + "']"),
+        callback: encodeURIComponent("FastSearch.results['" + query.replace(/'/g, "\\'") + "']"),
         query   : encodeURIComponent(query)
       });
 
