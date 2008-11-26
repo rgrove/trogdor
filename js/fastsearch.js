@@ -37,48 +37,6 @@ var FastSearch = function () {
   }
 
   /**
-   * Sniff the user agent. Uses a paraphrased version of the YUI user agent
-   * detection code.
-   *
-   * @method getUserAgent
-   * @private
-   */
-  function getUserAgent() {
-    // No need to run again if ua is already populated.
-    if (ua) {
-      return;
-    }
-
-    var nua = navigator.userAgent, m;
-
-    ua = {
-      gecko : 0,
-      ie    : 0,
-      webkit: 0
-    };
-
-    m = nua.match(/AppleWebKit\/(\S*)/);
-
-    if (m && m[1]) {
-      ua.webkit = parseFloat(m[1]);
-    } else {
-      m = nua.match(/MSIE\s([^;]*)/);
-
-      if (m && m[1]) {
-        ua.ie = parseFloat(m[1]);
-      } else if ((/Gecko\/(\S*)/).test(nua)) {
-        ua.gecko = 1;
-
-        m = nua.match(/rv:([^\s\)]*)/);
-
-        if (m && m[1]) {
-          ua.gecko = parseFloat(m[1]);
-        }
-      }
-    }
-  }
-
-  /**
    * Attaches an event listener.
    *
    * @method on
@@ -183,6 +141,13 @@ var FastSearch = function () {
     e = e || w.event;
 
     switch (e.keyCode) {
+    case 27: // esc
+      preventDefault(e);
+
+      selIndex = -1;
+      inputEl.focus();
+      break;
+
     case 38: // up
       preventDefault(e);
 
@@ -258,11 +223,6 @@ var FastSearch = function () {
       inputEl  = get(myInputEl);
       resultEl = get(myResultEl);
 
-      // Turn autocomplete off so arrow key navigation will work.
-      inputEl.setAttribute('autocomplete', 'off');
-
-      getUserAgent();
-
       on(inputEl, 'keyup', function () {
         self.search(inputEl.value);
       });
@@ -271,7 +231,7 @@ var FastSearch = function () {
         selIndex = -1;
       });
 
-      on(d, ua.gecko ? 'keypress' : 'keydown', handleKeyNav);
+      on(d, 'keydown', handleKeyNav);
 
       inputEl.focus();
     },
