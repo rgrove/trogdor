@@ -223,6 +223,13 @@ var FastSearch = function () {
       inputEl  = get(myInputEl);
       resultEl = get(myResultEl);
 
+      // If the search input field already contains something, this page was
+      // probably loaded from the browser's cache after a back button click, so
+      // we need to refresh the search results.
+      if (inputEl.value) {
+        self.search(inputEl.value);
+      }
+
       on(inputEl, 'keyup', function () {
         self.search(inputEl.value);
       });
