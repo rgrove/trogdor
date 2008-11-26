@@ -2,16 +2,16 @@
  * A fast, simple search-as-you-type implementation using the Yahoo! Search BOSS
  * API.
  *
- * @module fastsearch
+ * @module trogdor
  * @author Ryan Grove <ryan@wonko.com>
  * @url http://pieisgood.org/search/
  */
 
 /**
- * @class FastSearch
+ * @class Trogdor
  * @static
  */
-var FastSearch = function () {
+var Trogdor = function () {
   // -- Private Variables ------------------------------------------------------
   var d        = document,
       w        = window,
@@ -209,7 +209,7 @@ var FastSearch = function () {
     // -- Public Methods -------------------------------------------------------
 
     /**
-     * Initializes the FastSearch module.
+     * Initializes the Trogdor module.
      *
      * @method init
      * @param {String} myAppId Yahoo! BOSS app id to use
@@ -279,7 +279,7 @@ var FastSearch = function () {
 
       el.src = substitute(self.BOSS_URL, {
         appid   : encodeURIComponent(appId),
-        callback: encodeURIComponent("FastSearch.results['" + query.replace(/'/g, "\\'") + "']"),
+        callback: encodeURIComponent("Trogdor.results['" + query.replace(/'/g, "\\'") + "']"),
         query   : encodeURIComponent(query)
       });
 
