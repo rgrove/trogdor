@@ -219,13 +219,24 @@ var FastSearch = function () {
      *   element id to populate with search results
      */
     init: function (myAppId, myInputEl, myResultEl) {
+      var match;
+
       appId    = myAppId;
       inputEl  = get(myInputEl);
       resultEl = get(myResultEl);
 
-      // If the search input field already contains something, this page was
-      // probably loaded from the browser's cache after a back button click, so
-      // we need to refresh the search results.
+      // If the search input field is empty and this page has a query string in
+      // the URL, populate the search field with that query.
+      if (!inputEl.value) {
+        if (match = w.location.search.match(/(?:\?|&)q=([^&]+)/)) {
+          inputEl.value = decodeURIComponent(match[1]);
+        }
+      }
+
+      // If the search input field already contains something, that means that
+      // either the query string contained a search query (see above) or this
+      // page was loaded from the browser's cache after a back button click. We
+      // need to refresh the results.
       if (inputEl.value) {
         self.search(inputEl.value);
       }
