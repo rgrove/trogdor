@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+    xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Trogdor</ShortName>
+  <LongName>Trogdor Web Search</LongName>
+  <Description>Burninatingly fast search using Yahoo! BOSS</Description>
+  <Image height="16" width="16" type="image/png">http://pieisgood.org/search/icon.png</Image>
+  <Tags>web fast instant boss yahoo</Tags>
+  <Contact>ryan@wonko.com</Contact>
+  <Url type="text/html" method="GET"
+      template="http://pieisgood.org/search?q={searchTerms}" />
+  <Query role="example" searchTerms="burninate" />
+  <Developer>Ryan Grove</Developer>
+  <moz:SearchForm>searchFormURL</moz:SearchForm>
+</OpenSearchDescription>
