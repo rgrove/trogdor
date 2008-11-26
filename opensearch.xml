@@ -8,7 +8,7 @@
   <Tags>web fast instant boss yahoo</Tags>
   <Contact>ryan@wonko.com</Contact>
   <Url type="text/html" method="GET"
-      template="http://pieisgood.org/search?q={searchTerms}" />
+      template="http://pieisgood.org/search/?q={searchTerms}" />
   <Query role="example" searchTerms="burninate" />
   <Developer>Ryan Grove</Developer>
   <moz:SearchForm>searchFormURL</moz:SearchForm>
