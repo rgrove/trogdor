@@ -129,21 +129,23 @@ var FastSearch = function () {
       return;
     }
 
-    var results = data.ysearchresponse.resultset_web,
-        el, i, result;
+    var html    = '',
+        results = data.ysearchresponse.resultset_web,
+        i, result;
 
-    resultEl.innerHTML = '';
+    if (results && results.length) {
+      for (i = 0; i < results.length; ++i) {
+        result = results[i];
 
-    for (i = 0; i < results.length; ++i) {
-      el     = d.createElement('li');
-      result = results[i];
-
-      el.innerHTML = '<h3><a href="' + result.clickurl + '">' + result.title + '</a></h3>' +
-          '<div class="abstract">' + result['abstract'] + '</div>' +
-          '<cite>' + result.dispurl + '</cite>';
-
-      resultEl.appendChild(el);
+        html += '<li class="res"><h3><a href="' + result.clickurl + '">' + result.title + '</a></h3>' +
+            '<div class="abstract">' + result['abstract'] + '</div>' +
+            '<cite>' + result.dispurl + '</cite></li>';
+      }
+    } else {
+      html = '<li>No results</li>';
     }
+
+    resultEl.innerHTML = html;
   }
 
   /**
