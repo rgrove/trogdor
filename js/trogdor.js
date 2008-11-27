@@ -229,7 +229,7 @@ var Trogdor = function () {
       // the URL, populate the search field with that query.
       if (!inputEl.value) {
         if (match = w.location.search.match(/(?:\?|&)q=([^&]+)/)) {
-          inputEl.value = decodeURIComponent(match[1]);
+          inputEl.value = decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
       }
 
