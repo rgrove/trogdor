@@ -11,5 +11,5 @@
       template="http://pieisgood.org/search/?q={searchTerms}" />
   <Query role="example" searchTerms="burninate" />
   <Developer>Ryan Grove</Developer>
-  <moz:SearchForm>searchFormURL</moz:SearchForm>
+  <moz:SearchForm>http://pieisgood.org/search/</moz:SearchForm>
 </OpenSearchDescription>
