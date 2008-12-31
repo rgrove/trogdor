@@ -279,7 +279,7 @@ var Trogdor = function () {
 
       el.src = substitute(self.BOSS_URL, {
         appid   : encodeURIComponent(appId),
-        callback: encodeURIComponent("Trogdor.results['" + query.replace(/'/g, "\\'") + "']"),
+        callback: encodeURIComponent("Trogdor.results['" + query.replace(/'/g, "\\'") + "']").replace(/'/g, '%27'),
         query   : encodeURIComponent(query)
       });
 
