@@ -16,7 +16,7 @@ var Trogdor = function () {
   var d        = document,
       w        = window,
       selIndex = -1,
-      appId, inputEl, resultEl, self, ua;
+      appId, inputEl, resultEl, self, script, ua;
 
   // -- Private Methods --------------------------------------------------------
 
@@ -78,12 +78,11 @@ var Trogdor = function () {
    * Refreshes search results using the specified BOSS response data.
    *
    * @method refresh
-   * @param {String} query search query
    * @param {Object} data BOSS response data
    * @private
    */
-  function refresh(query, data) {
-    if (!query || !data || !data.ysearchresponse) {
+  function refresh(data) {
+    if (!data || !data.ysearchresponse) {
       return;
     }
 
@@ -270,35 +269,38 @@ var Trogdor = function () {
       // If the query is already in the result cache, just use the cached
       // results.
       if (self.results.hasOwnProperty(query)) {
-        self.results[query]();
+        refresh(self.results[query]);
         return;
       }
 
-      // Create a scriptlet to perform the request.
-      var el = d.createElement('script');
+      // If a previous request is in progress, cancel it.
+      if (script) {
+        script.parentNode.removeChild(script);
+      }
 
-      el.src = substitute(self.BOSS_URL, {
+      // Create a new script element to perform the request.
+      script = d.createElement('script');
+
+      script.src = substitute(self.BOSS_URL, {
         appid   : encodeURIComponent(appId),
-        callback: encodeURIComponent("Trogdor.results['" + query.replace(/'/g, "\\'") + "']").replace(/'/g, '%27'),
+        callback: 'Trogdor.response',
         query   : encodeURIComponent(query)
       });
 
-      // Create a dynamic result callback that will receive the BOSS response
-      // object and cache it to speed up future requests for the same query.
-      self.results[query] = function (data) {
-        if (data) {
-          arguments.callee.data = data;
-        }
+      // Create a callback that will receive the BOSS response object and cache
+      // it to speed up future requests for the same query.
+      self.response = function (data) {
+        self.results[query] = data;
 
-        refresh(query, arguments.callee.data);
+        refresh(data);
 
-        if (el) {
-          el.parentNode.removeChild(el);
-          el = null;
+        if (script) {
+          script.parentNode.removeChild(script);
+          script = null;
         }
       };
 
-      d.body.appendChild(el);
+      d.body.appendChild(script);
     }
   };
 
