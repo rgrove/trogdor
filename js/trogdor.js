@@ -16,7 +16,7 @@ var Trogdor = function () {
   var d        = document,
       w        = window,
       selIndex = -1,
-      appId, inputEl, resultEl, self, script, ua;
+      appId, inputEl, resultEl, self, script;
 
   // -- Private Methods --------------------------------------------------------
 
